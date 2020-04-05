@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="cyw">
+  
+  
+  <title>github pages + hexo + netlify 实现https自定义域名博客 | 杂货铺</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="博客,">
+  
+
+  
+  <meta name="description" content="本博客搭建方案">
+
+  
+
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"ooH98PkzMCnuGUH4dx6Qezlj-gzGzoHsz","appkey":"igjCb3vlkAmfCj8kMplXhVhJ","comment":false,"count":false},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-03-29",
+    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
+    is_post: true,
+    lock: false,
+    author: "cyw",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+<script src="/vendor/jquery.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+<link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">YunV</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 杂七杂八</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/yunweichen/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-29
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    github pages + hexo + netlify 实现https自定义域名博客
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="方案一：-阿里云域名和github-netlify"><a href="#方案一：-阿里云域名和github-netlify" class="headerlink" title="方案一： 阿里云域名和github+netlify"></a>方案一： 阿里云域名和github+netlify</h2><h3 id="github-pages-搭建静态页面博客"><a href="#github-pages-搭建静态页面博客" class="headerlink" title="github pages 搭建静态页面博客"></a>github pages 搭建静态页面博客</h3><p>More info: <a href="https://pages.github.com/" target="_blank" rel="noopener">github pages</a></p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>More info: <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo官网</a><br>           <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo文档</a><br>           <a href="https://hexo.io/themes/" target="_blank" rel="noopener">hexo主题</a></p>
+<h3 id="购买的域名和netlify实现https"><a href="#购买的域名和netlify实现https" class="headerlink" title="购买的域名和netlify实现https"></a>购买的域名和netlify实现https</h3><p>More info: <a href="https://jingyan.baidu.com/article/f79b7cb3309be79144023ea4.html" target="_blank" rel="noopener">方案</a></p>
+<h2 id="方案二：-腾讯云域名和coding-cloudflare"><a href="#方案二：-腾讯云域名和coding-cloudflare" class="headerlink" title="方案二： 腾讯云域名和coding+cloudflare"></a>方案二： 腾讯云域名和coding+cloudflare</h2><h3 id="coding-pages-服务搭建静态页面博客"><a href="#coding-pages-服务搭建静态页面博客" class="headerlink" title="coding pages 服务搭建静态页面博客"></a>coding pages 服务搭建静态页面博客</h3><p>More info: <a href="https://dev.tencent.com/help/doc/quick-start/creating-pages" target="_blank" rel="noopener">coding pages</a><br>More info: <a href="https://www.jianshu.com/p/a19962485b4a" target="_blank" rel="noopener">其他博客</a></p>
+<h3 id="cloudflare-修改域名解析dns"><a href="#cloudflare-修改域名解析dns" class="headerlink" title="cloudflare 修改域名解析dns"></a>cloudflare 修改域名解析dns</h3><p>More info: <a href="https://www.cloudflare.com/zh-cn/" target="_blank" rel="noopener">cloudflare</a></p>
+<h3 id="hexo-插件"><a href="#hexo-插件" class="headerlink" title="hexo 插件"></a>hexo 插件</h3><ol>
+<li><p>自动生成目录 More info: <a href="https://www.npmjs.com/package/hexo-toc" target="_blank" rel="noopener">详细教程</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-toc --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>流程图和时序图  More info: <a href="https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html" target="_blank" rel="noopener">详细教程</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-flowchart</span><br><span class="line">npm install --save hexo-filter-sequence</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>eg :</p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><div id="flowchart-0" class="flow-chart"></div>
+
+
+<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><p><div id="sequence-0"></div></p>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">stOrder=>start: 下单请求
+stPay=>start: 支付请求
+eOrder=>end: 结束推送（取消订单）
+e=>end: 结束推送
+condorder=>condition: 对接系统下单是否成功？
+condpay=>condition: 对接系统支付是否成功？
+
+stOrder->condorder
+condorder(yes)->stPay
+condorder(no)->eOrder
+stPay->condpay
+condpay(yes)->e
+condpay(no)->eOrder</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.27/webfontloader.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script><textarea id="sequence-0-code" style="display: none">
+my->api: 下单请求
+Note right of api: 对接系统下单
+api-->my: 成功
+my->api: 支付请求
+Note right of api: 对接系统支付
+api-->my: 成功
+api->my: 出票请求
+my-->api: 出票成功
+Note left of my: 正常订单流程完成</textarea><textarea id="sequence-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("sequence-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("sequence-0-options").value));  var diagram = Diagram.parse(code);  diagram.drawSVG("sequence-0", options);</script></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方案一：-阿里云域名和github-netlify"><span class="toc-text">方案一： 阿里云域名和github+netlify</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github-pages-搭建静态页面博客"><span class="toc-text">github pages 搭建静态页面博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo"><span class="toc-text">hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#购买的域名和netlify实现https"><span class="toc-text">购买的域名和netlify实现https</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案二：-腾讯云域名和coding-cloudflare"><span class="toc-text">方案二： 腾讯云域名和coding+cloudflare</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#coding-pages-服务搭建静态页面博客"><span class="toc-text">coding pages 服务搭建静态页面博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudflare-修改域名解析dns"><span class="toc-text">cloudflare 修改域名解析dns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hexo-插件"><span class="toc-text">hexo 插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程图"><span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#时序图"><span class="toc-text">时序图</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: cyw</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://yunv.fun/passages/github-pages-hexo-netlify-实现https自定义域名博客/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/博客/"><i class="fa fa-tags"></i>博客</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">博客推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://www.liubinbin.site/" target="_blank">liubb -- 个人技术博客</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">系列教程</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://coding.net/help/doc/project/markdown.html#Markdown" target="_blank">Markdown 语法介绍</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">抓到我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://yunv.fun" target="_blank">占坑的</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+
+    <script src="/js/sw.js"></script>
+
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/macOs设置/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/mac下代理多线程下载/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
